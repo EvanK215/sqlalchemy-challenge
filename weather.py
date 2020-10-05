@@ -43,3 +43,14 @@ def welcome():
         f"/api/v1.0/temp/start_date/end_date"
 
     )
+def precipitation():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    # Query for the dates and precipitation values
+    results =   session.query(Measurement.date, Measurement.prcp).\
+                order_by(Measurement.date).all()
+    "Returns the last year of recorded data"
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
